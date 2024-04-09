@@ -182,13 +182,13 @@ class MainApp(tk.Tk):
 
         # Create and pack widgets for the version, copyright, and link to GitHub
         ttk.Label(about_win, text="Version: " + currentVersion).pack(pady=5)
-        copyright = ttk.Label(about_win, text="©2023 Matthew Thomas Stevens Studios LLC", cursor="hand2", foreground="white", font="TkDefaultFont 10 underline")
+        copyright = ttk.Label(about_win, text="©2024 Matthew Thomas Stevens Studios LLC", cursor="hand2", foreground="white", font="TkDefaultFont 10 underline")
         copyright.pack(pady=5)
         copyright.bind("<Button-1>", lambda e: webbrowser.open("https://www.matthewstevens.me"))
         
         link_label = ttk.Label(about_win, text="Visit GitHub Repo", cursor="hand2", foreground="white", font="TkDefaultFont 10 underline")
         link_label.pack(pady=5)
-        link_label.bind("<Button-1>", lambda e: webbrowser.open("https://github.com/mrzeappleGit/convertToWebP"))
+        link_label.bind("<Button-1>", lambda e: webbrowser.open("https://github.com/mrzeappleGit/WebImageAudit"))
         
         about_win.geometry('300x400')  # Adjusted the size for the image
         about_win.mainloop()
