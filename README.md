@@ -29,4 +29,4 @@ Introducing an innovative solution for digital teams: a powerful image compariso
   4. Click compare and copy any URL you need.
 ## Support
 
-For support, email [support@matthewstevens.me](mailto:support@matthewstevens.me?subject=[GitHub]%20Universal%20File%20%26%20WebP%20Toolset)
+For support, email [support@matthewstevens.me](mailto:support@matthewstevens.me?subject=[GitHub]%20Web%20Image%20Audit)
