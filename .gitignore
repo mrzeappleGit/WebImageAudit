@@ -1,0 +1,7 @@
+/__pycache__
+/build
+/dist
+/chrome-win64
+/geckodriver.exe
+/geckodriver.log
+/pyinstallercmd.txt
