@@ -5,7 +5,7 @@
 
 
 <div align="center" style="background-color: #FFD700; padding: 10px; margin: 10px; border-radius: 5px;">
-  ⚠️ The Mac version is coming soon.
+  ⚠️ Get the Mac Version <a href="https://github.com/mrzeappleGit/webImageAuditMac" target="_blank">here</a>.
 </div>
 
 # Web Image Audit
