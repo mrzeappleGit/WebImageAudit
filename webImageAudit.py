@@ -21,9 +21,10 @@ import requests
 import subprocess
 from datetime import datetime
 import numpy
+from imageConverter import ImageConverterGUI
 from cryptography.fernet import Fernet
 SERVER_URL = "http://webp.mts-studios.com:5000/current_version_webImageAudit"
-currentVersion = "1.0.0"
+currentVersion = "1.1.0"
 
 headers = {
     'User-Agent': 'convertToWebP/1.0'
@@ -56,6 +57,12 @@ class MainApp(tk.Tk):
         self.button_frame = tk.Frame(self)
         self.button_frame.pack(side="top", fill="x")
         
+        self.image_audit_button = ttk.Button(self.button_frame, text="Audit", command=self.show_image_audit, cursor="arrow", state="disabled")
+        self.image_audit_button.pack(side="left", ipadx=10, ipady=10, padx=5, pady=5)
+
+        self.image_converter_button = ttk.Button(self.button_frame, text="Convert Online Images", command=self.show_image_converter, cursor=cursor_point)
+        self.image_converter_button.pack(side="left", ipadx=10, ipady=10, padx=5, pady=5)
+        
         # Hamburger menu button
         self.menu_button = ttk.Button(self.button_frame, text="≡", command=self.show_menu)
         self.menu_button.pack(side="right", padx=5, pady=5)
@@ -64,6 +71,15 @@ class MainApp(tk.Tk):
         # Dropdown menu for the hamburger menu button
         self.dropdown_menu = tk.Menu(self, tearoff=0)
         self.dropdown_menu.add_command(label="Check for Updates", command=self.check_and_update)
+        
+        self.image_audit = urlPickerGUI(self)
+        self.image_audit.pack(side="left", fill="both", expand=True)
+        self.image_converter = ImageConverterGUI(self)
+        self.image_converter.pack(side="right", fill="both", expand=True)
+
+
+        # Hide the file renamer at startup
+        self.image_converter.pack_forget()
 
         is_update_available(currentVersion)
         
@@ -77,9 +93,6 @@ class MainApp(tk.Tk):
         self.dropdown_menu = tk.Menu(self, tearoff=0)
         self.update_dropdown_menu()
         self.periodic_check_for_updates()
-        
-        self.urlPicker = urlPickerGUI(self)
-        self.urlPicker.pack(side="left", fill="both", expand=True)
 
         
         
@@ -91,6 +104,46 @@ class MainApp(tk.Tk):
             return True
         else:
             return False
+        
+    def show_image_converter(self):
+        cursor_point = "hand2" if platform != "darwin" else "pointinghand"
+        # Fade out
+        for i in range(10, -1, -1):
+            self.attributes('-alpha', i/10)
+            self.update()
+            time.sleep(0.05)
+
+        self.image_audit.pack_forget()
+        self.image_converter.pack(side="left", fill="both", expand=True)
+
+        self.image_converter_button.config(state='disabled', cursor="arrow")
+        self.image_audit_button.config(state='normal', cursor=cursor_point)
+
+        # Fade in
+        for i in range(0, 11):
+            self.attributes('-alpha', i/10)
+            self.update()
+            time.sleep(0.05)
+            
+    def show_image_audit(self):
+        cursor_point = "hand2" if platform != "darwin" else "pointinghand"
+        # Fade out
+        for i in range(10, -1, -1):
+            self.attributes('-alpha', i/10)
+            self.update()
+            time.sleep(0.05)
+
+        self.image_converter.pack_forget()
+        self.image_audit.pack(side="left", fill="both", expand=True)
+
+        self.image_audit_button.config(state='disabled', cursor="arrow")
+        self.image_converter_button.config(state='normal', cursor=cursor_point)
+
+        # Fade in
+        for i in range(0, 11):
+            self.attributes('-alpha', i/10)
+            self.update()
+            time.sleep(0.05)
         
     def update_menu_button_text(self):
         # Set button text based on whether an update is available
@@ -109,32 +162,6 @@ class MainApp(tk.Tk):
         
         self.dropdown_menu.add_command(label=menu_text, command=self.check_and_update)
         self.dropdown_menu.add_command(label="About", command=self.show_about)
-        
-
-    def show_image_converter(self):
-        cursor_point = "hand2" if platform != "darwin" else "pointinghand"
-        self.geometry('800x600')
-        # Fade out
-        for i in range(10, -1, -1):
-            self.attributes('-alpha', i/10)
-            self.update()
-            time.sleep(0.05)
-
-        self.file_renamer.pack_forget()
-        self.pdf_to_image.pack_forget()
-        self.image_converter.pack(side="left", fill="both", expand=True)
-        self.video_converter.pack_forget()
-
-        self.image_converter_button.config(state='disabled', cursor="arrow")
-        self.file_renamer_button.config(state='normal', cursor=cursor_point)
-        self.pdf_to_image_button.config(state='normal', cursor=cursor_point)
-        self.video_converter_button.config(state='normal', cursor=cursor_point)
-
-        # Fade in
-        for i in range(0, 11):
-            self.attributes('-alpha', i/10)
-            self.update()
-            time.sleep(0.05)
             
     def show_menu(self):
         # Display the dropdown menu below the menu button

@@ -6,7 +6,7 @@ datas += collect_data_files('sv_ttk')
 
 
 a = Analysis(
-    ['webImageAudit.py', 'urlPicker.py'],
+    ['webImageAudit.py', 'urlPicker.py', 'imageConverter.py'],
     pathex=[],
     binaries=[],
     datas=datas,
