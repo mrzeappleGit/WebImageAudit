@@ -94,7 +94,7 @@ class urlPickerGUI(ttk.Frame):
         def get_image_file_sizes(url_list):
             image_sizes = {}
             for url in url_list:
-                response = requests.get(url)
+                response = requests.get(url, verify=False)
                 if response.status_code == 200:
                     image_size = len(response.content)  # Get size of image in bytes
                     image_sizes[url] = image_size
@@ -139,7 +139,7 @@ class urlPickerGUI(ttk.Frame):
 
     def get_image_size(self, url):
         try:
-            response = requests.get(url)
+            response = requests.get(url, verify=False)
             return len(response.content) if response.status_code == 200 else None
         except requests.RequestException as e:
             messagebox.showerror("Error", f"Failed to get image: {e}")

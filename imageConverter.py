@@ -64,7 +64,7 @@ class ImageConverterGUI(ttk.Frame):
         sv_ttk.set_theme("dark")
         
         url_entry_label = ttk.Label(self, text="Page URL:")
-        url_entry_label.grid(column=0, row=0, padx=20, pady=20, sticky=tk.W)
+        url_entry_label.grid(column=0, row=1, padx=20, pady=20, sticky=tk.W)
 
         self.url_entry = ttk.Entry(self, width=30)
         self.url_entry.grid(column=1, row=0, padx=20, pady=20, sticky=tk.W)
